@@ -14,7 +14,6 @@
 
 package com.liferay.traning.gradebook.model;
 
-import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.wrapper.BaseModelWrapper;
 
@@ -43,7 +42,6 @@ public class AssignmentWrapper
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
 		attributes.put("assignmentId", getAssignmentId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
@@ -60,12 +58,6 @@ public class AssignmentWrapper
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
-
-		if (uuid != null) {
-			setUuid(uuid);
-		}
-
 		Long assignmentId = (Long)attributes.get("assignmentId");
 
 		if (assignmentId != null) {
@@ -247,16 +239,6 @@ public class AssignmentWrapper
 		return model.getUserUuid();
 	}
 
-	/**
-	 * Returns the uuid of this assignment.
-	 *
-	 * @return the uuid of this assignment
-	 */
-	@Override
-	public String getUuid() {
-		return model.getUuid();
-	}
-
 	@Override
 	public void persist() {
 		model.persist();
@@ -380,21 +362,6 @@ public class AssignmentWrapper
 	@Override
 	public void setUserUuid(String userUuid) {
 		model.setUserUuid(userUuid);
-	}
-
-	/**
-	 * Sets the uuid of this assignment.
-	 *
-	 * @param uuid the uuid of this assignment
-	 */
-	@Override
-	public void setUuid(String uuid) {
-		model.setUuid(uuid);
-	}
-
-	@Override
-	public StagedModelType getStagedModelType() {
-		return model.getStagedModelType();
 	}
 
 	@Override

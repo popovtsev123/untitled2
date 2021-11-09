@@ -14,11 +14,6 @@
 
 package com.liferay.traning.gradebook.service.base;
 
-import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
-import com.liferay.exportimport.kernel.lar.ManifestSummary;
-import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
-import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -28,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -238,20 +232,6 @@ public abstract class AssignmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the assignment matching the UUID and group.
-	 *
-	 * @param uuid the assignment's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching assignment, or <code>null</code> if a matching assignment could not be found
-	 */
-	@Override
-	public Assignment fetchAssignmentByUuidAndGroupId(
-		String uuid, long groupId) {
-
-		return assignmentPersistence.fetchByUUID_G(uuid, groupId);
-	}
-
-	/**
 	 * Returns the assignment with the primary key.
 	 *
 	 * @param assignmentId the primary key of the assignment
@@ -305,72 +285,6 @@ public abstract class AssignmentLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("assignmentId");
 	}
 
-	@Override
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		final PortletDataContext portletDataContext) {
-
-		final ExportActionableDynamicQuery exportActionableDynamicQuery =
-			new ExportActionableDynamicQuery() {
-
-				@Override
-				public long performCount() throws PortalException {
-					ManifestSummary manifestSummary =
-						portletDataContext.getManifestSummary();
-
-					StagedModelType stagedModelType = getStagedModelType();
-
-					long modelAdditionCount = super.performCount();
-
-					manifestSummary.addModelAdditionCount(
-						stagedModelType, modelAdditionCount);
-
-					long modelDeletionCount =
-						ExportImportHelperUtil.getModelDeletionCount(
-							portletDataContext, stagedModelType);
-
-					manifestSummary.addModelDeletionCount(
-						stagedModelType, modelDeletionCount);
-
-					return modelAdditionCount;
-				}
-
-			};
-
-		initActionableDynamicQuery(exportActionableDynamicQuery);
-
-		exportActionableDynamicQuery.setAddCriteriaMethod(
-			new ActionableDynamicQuery.AddCriteriaMethod() {
-
-				@Override
-				public void addCriteria(DynamicQuery dynamicQuery) {
-					portletDataContext.addDateRangeCriteria(
-						dynamicQuery, "modifiedDate");
-				}
-
-			});
-
-		exportActionableDynamicQuery.setCompanyId(
-			portletDataContext.getCompanyId());
-
-		exportActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod<Assignment>() {
-
-				@Override
-				public void performAction(Assignment assignment)
-					throws PortalException {
-
-					StagedModelDataHandlerUtil.exportStagedModel(
-						portletDataContext, assignment);
-				}
-
-			});
-		exportActionableDynamicQuery.setStagedModelType(
-			new StagedModelType(
-				PortalUtil.getClassNameId(Assignment.class.getName())));
-
-		return exportActionableDynamicQuery;
-	}
-
 	/**
 	 * @throws PortalException
 	 */
@@ -403,54 +317,6 @@ public abstract class AssignmentLocalServiceBaseImpl
 		throws PortalException {
 
 		return assignmentPersistence.findByPrimaryKey(primaryKeyObj);
-	}
-
-	/**
-	 * Returns all the assignments matching the UUID and company.
-	 *
-	 * @param uuid the UUID of the assignments
-	 * @param companyId the primary key of the company
-	 * @return the matching assignments, or an empty list if no matches were found
-	 */
-	@Override
-	public List<Assignment> getAssignmentsByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		return assignmentPersistence.findByUuid_C(uuid, companyId);
-	}
-
-	/**
-	 * Returns a range of assignments matching the UUID and company.
-	 *
-	 * @param uuid the UUID of the assignments
-	 * @param companyId the primary key of the company
-	 * @param start the lower bound of the range of assignments
-	 * @param end the upper bound of the range of assignments (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the range of matching assignments, or an empty list if no matches were found
-	 */
-	@Override
-	public List<Assignment> getAssignmentsByUuidAndCompanyId(
-		String uuid, long companyId, int start, int end,
-		OrderByComparator<Assignment> orderByComparator) {
-
-		return assignmentPersistence.findByUuid_C(
-			uuid, companyId, start, end, orderByComparator);
-	}
-
-	/**
-	 * Returns the assignment matching the UUID and group.
-	 *
-	 * @param uuid the assignment's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching assignment
-	 * @throws PortalException if a matching assignment could not be found
-	 */
-	@Override
-	public Assignment getAssignmentByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException {
-
-		return assignmentPersistence.findByUUID_G(uuid, groupId);
 	}
 
 	/**

@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.GroupedModel;
 import com.liferay.portal.kernel.model.ShardedModel;
-import com.liferay.portal.kernel.model.StagedAuditedModel;
 
 import java.util.Date;
 
@@ -37,8 +36,7 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public interface AssignmentModel
-	extends BaseModel<Assignment>, GroupedModel, ShardedModel,
-			StagedAuditedModel {
+	extends BaseModel<Assignment>, GroupedModel, ShardedModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -59,23 +57,6 @@ public interface AssignmentModel
 	 * @param primaryKey the primary key of this assignment
 	 */
 	public void setPrimaryKey(long primaryKey);
-
-	/**
-	 * Returns the uuid of this assignment.
-	 *
-	 * @return the uuid of this assignment
-	 */
-	@AutoEscape
-	@Override
-	public String getUuid();
-
-	/**
-	 * Sets the uuid of this assignment.
-	 *
-	 * @param uuid the uuid of this assignment
-	 */
-	@Override
-	public void setUuid(String uuid);
 
 	/**
 	 * Returns the assignment ID of this assignment.

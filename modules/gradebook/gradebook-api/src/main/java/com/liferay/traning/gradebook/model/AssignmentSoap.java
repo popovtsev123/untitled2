@@ -33,7 +33,6 @@ public class AssignmentSoap implements Serializable {
 	public static AssignmentSoap toSoapModel(Assignment model) {
 		AssignmentSoap soapModel = new AssignmentSoap();
 
-		soapModel.setUuid(model.getUuid());
 		soapModel.setAssignmentId(model.getAssignmentId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
@@ -95,14 +94,6 @@ public class AssignmentSoap implements Serializable {
 
 	public void setPrimaryKey(long pk) {
 		setAssignmentId(pk);
-	}
-
-	public String getUuid() {
-		return _uuid;
-	}
-
-	public void setUuid(String uuid) {
-		_uuid = uuid;
 	}
 
 	public long getAssignmentId() {
@@ -185,7 +176,6 @@ public class AssignmentSoap implements Serializable {
 		_dueDate = dueDate;
 	}
 
-	private String _uuid;
 	private long _assignmentId;
 	private long _groupId;
 	private long _companyId;

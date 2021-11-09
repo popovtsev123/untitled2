@@ -62,11 +62,9 @@ public class AssignmentCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", assignmentId=");
+		sb.append("{assignmentId=");
 		sb.append(assignmentId);
 		sb.append(", groupId=");
 		sb.append(groupId);
@@ -94,13 +92,6 @@ public class AssignmentCacheModel
 	@Override
 	public Assignment toEntityModel() {
 		AssignmentImpl assignmentImpl = new AssignmentImpl();
-
-		if (uuid == null) {
-			assignmentImpl.setUuid("");
-		}
-		else {
-			assignmentImpl.setUuid(uuid);
-		}
 
 		assignmentImpl.setAssignmentId(assignmentId);
 		assignmentImpl.setGroupId(groupId);
@@ -156,8 +147,6 @@ public class AssignmentCacheModel
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		uuid = objectInput.readUTF();
-
 		assignmentId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
@@ -175,13 +164,6 @@ public class AssignmentCacheModel
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
-		if (uuid == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(uuid);
-		}
-
 		objectOutput.writeLong(assignmentId);
 
 		objectOutput.writeLong(groupId);
@@ -217,7 +199,6 @@ public class AssignmentCacheModel
 		objectOutput.writeLong(dueDate);
 	}
 
-	public String uuid;
 	public long assignmentId;
 	public long groupId;
 	public long companyId;

@@ -4,9 +4,9 @@
 <service-builder dependency-injector="ds" package-path="com.liferay.traning.gradebook">
 	<namespace>Gradebook</namespace>
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-	<entity local-service="true" name="Assignment" remote-service="true" uuid="true">
+	<entity name="Assignment" local-service="true">
 
-		<!-- PK fields -->
+	<!-- PK fields -->
 
 		<column name="assignmentId" primary="true" type="long" />
 
@@ -25,13 +25,6 @@
 		<column name="description" type="String"/>
 		<column name="dueDate" type="Date"/>
 
-<!--		&lt;!&ndash; Other fields &ndash;&gt;-->
-
-<!--		<column name="field1" type="String" />-->
-<!--		<column name="field2" type="boolean" />-->
-<!--		<column name="field3" type="int" />-->
-<!--		<column name="field4" type="Date" />-->
-<!--		<column name="field5" type="String" />-->
 
 		<!-- Order -->
 
@@ -41,7 +34,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="groupId" return-type="Collection">
+		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
 

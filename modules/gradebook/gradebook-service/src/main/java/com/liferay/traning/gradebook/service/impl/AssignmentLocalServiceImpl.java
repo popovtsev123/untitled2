@@ -29,7 +29,8 @@ import com.liferay.traning.gradebook.service.base.AssignmentLocalServiceBaseImpl
 
 import org.osgi.service.component.annotations.Component;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,16 +91,16 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 	}
 
 	public List<Assignment> getAssignmentsByGroupId(long groupId) {
-		return assignmentPersistence.findBygroupId(groupId);
+		return assignmentPersistence.findByGroupId(groupId);
 	}
 
 	public List<Assignment> getAssignmentsByGroupId(long groupId, int start, int end) {
-		return assignmentPersistence.findBygroupId(groupId, start, end);
+		return assignmentPersistence.findByGroupId(groupId, start, end);
 	}
 
 	public List<Assignment> getAssignmentsByGroupId(long groupId, int start, int end,
 			OrderByComparator<Assignment> orderByComparator) {
-		return assignmentPersistence.findBygroupId(groupId, start, end, orderByComparator);
+		return assignmentPersistence.findByGroupId(groupId, start, end, orderByComparator);
 	}
 
 	public List<Assignment> getAssignmentsByKeywords(
@@ -137,14 +138,20 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		throw new UnsupportedOperationException("Not supported.");
 	}
 
+	@Override public Assignment addAssignment(long groupId, String title, String description, java.sql.Date dueDate,
+			ServiceContext serviceContext) throws PortalException {
+		return null;
+	}
+
 	@Override
 	public Assignment updateAssignment(Assignment assignment) {
 		throw new UnsupportedOperationException("Not supported.");
 	}
 
-		/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Use <code>com.liferay.traning.gradebook.service.AssignmentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.traning.gradebook.service.AssignmentLocalServiceUtil</code>.
-	 */
+	@Override
+	public Assignment updateAssignment(long assignmentId, String title, String description, java.sql.Date dueDate,
+			ServiceContext serviceContext) throws PortalException {
+		return null;
+	}
+
 }
