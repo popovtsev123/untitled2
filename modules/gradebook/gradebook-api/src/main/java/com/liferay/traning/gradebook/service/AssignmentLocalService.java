@@ -49,6 +49,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see AssignmentLocalServiceUtil
  * @generated
  */
+//интерфейс локального сервича,содержит сигнатуры методов определенных в LocalServiceImpl и в LocalServiceBaseImpl
 @ProviderType
 @Transactional(
 	isolation = Isolation.PORTAL,

@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.traning.gradebook.model.Assignment;
 
 import java.util.List;
-
+//В этом классе создается экземпляр LocalServiceImpl  именно через этот класс происходит основная работа с сервисом ,вызов методов
 /**
  * Provides the remote service utility for Assignment. This utility wraps
  * <code>com.liferay.traning.gradebook.service.impl.AssignmentServiceImpl</code> and is an
@@ -32,6 +32,7 @@ import java.util.List;
  * @see AssignmentService
  * @generated
  */
+
 public class AssignmentServiceUtil {
 
 	/*

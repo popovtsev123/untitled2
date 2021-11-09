@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Component;
 
 import java.util.Date;
 import java.util.List;
-
+// Реализация локального сервиса.Класс изменяемый в ручную ,все методы располагаются в этом классе
 /**
  * The implementation of the assignment local service.
  *

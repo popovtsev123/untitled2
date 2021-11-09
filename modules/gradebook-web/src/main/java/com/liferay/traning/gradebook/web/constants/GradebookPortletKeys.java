@@ -6,6 +6,6 @@ package com.liferay.traning.gradebook.web.constants;
 public class GradebookPortletKeys {
 
 	public static final String GRADEBOOK =
-		"com_liferay_traning_gradebook_web_GradebookPortlet";
+			"com_liferay_traning_gradebook_web_portlet_GradebookPortlet";
 
 }

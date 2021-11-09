@@ -52,7 +52,7 @@ import javax.sql.DataSource;
 
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-
+// LocalServiceBaseImpl содержит ряд методов, реализующих общие функциональные возможности
 /**
  * Provides the base implementation for the assignment local service.
  *
