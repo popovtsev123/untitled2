@@ -1,10 +1,7 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
 	compileOnly project(":modules:gradebook:gradebook-api")
 
 }
-buildService {
-	apiDir = "../gradebook-api/src/main/java"
-}
-group = "com.liferay.training.gradebook"
 

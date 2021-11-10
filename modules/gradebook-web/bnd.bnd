@@ -1,4 +1,0 @@
-Bundle-Name: Gradebook-portlet
-Bundle-SymbolicName: com.liferay.traning.gradebook.web
-Bundle-Version: 1.0.0
-Export-Package: com.liferay.traning.gradebook.web.constants

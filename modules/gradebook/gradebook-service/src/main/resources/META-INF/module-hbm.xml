@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="false" default-lazy="false">
-	<import class="com.liferay.traning.gradebook.model.Assignment" />
-	<class name="com.liferay.traning.gradebook.model.impl.AssignmentImpl" table="Gradebook_Assignment">
+	<import class="com.liferay.training.gradebook.model.Assignment" />
+	<class name="com.liferay.training.gradebook.model.impl.AssignmentImpl" table="Gradebook_Assignment">
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="assignmentId" type="long">
 			<generator class="assigned" />
 		</id>

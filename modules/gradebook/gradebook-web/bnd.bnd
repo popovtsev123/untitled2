@@ -1,0 +1,6 @@
+Bundle-Name: Gradebook-portlet
+Bundle-SymbolicName: com.liferay.training.gradebook.web
+Bundle-Version: 1.0.0
+-metatype: *
+
+
